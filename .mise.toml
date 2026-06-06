@@ -1,0 +1,47 @@
+[tools]
+node = "24.14.1"
+python = "3.12.3"
+
+[tasks.setup]
+description = "Install npm and Python dependencies for local development"
+run = [
+  "npm ci",
+  "python -m pip install --upgrade pip",
+  "python -m pip install -r requirements-dev.txt",
+  "npx playwright install chromium"
+]
+
+[tasks.format]
+description = "Format all source files"
+run = "npm run format"
+
+[tasks.lint]
+description = "Run lint and Markdown checks"
+run = [
+  "npm run lint",
+  "npm run lint:docs"
+]
+
+[tasks.typecheck]
+description = "Run TypeScript type checks"
+run = "npm run typecheck"
+
+[tasks.test]
+description = "Run unit tests"
+run = "npm run test:unit"
+
+[tasks.test-e2e]
+description = "Run Playwright end-to-end tests"
+run = "npm run test:e2e"
+
+[tasks.build]
+description = "Build the Vue app"
+run = "npm run build"
+
+[tasks.storybook]
+description = "Build Storybook"
+run = "npm run storybook:build"
+
+[tasks.check]
+description = "Run the same checks as CI"
+run = "npm run check"
