@@ -33,6 +33,12 @@ jobs:
       - name: Run pre-commit checks
         run: mise exec -- python -m pre_commit run --all-files --show-diff-on-failure
 
+      - name: Run full secret scan
+        run: mise run secret-scan
+
+      - name: Audit dependencies
+        run: mise run audit
+
       - name: Run unit tests
         run: mise run test
 
@@ -41,6 +47,16 @@ jobs:
 
       - name: Build Storybook
         run: mise run storybook
+
+      - name: Generate SBOM
+        run: mise run sbom
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: sbom
+          path: sbom.spdx.json
+          retention-days: 7
 
   e2e:
     runs-on: ubuntu-latest
@@ -58,12 +74,12 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          mise exec -- npm ci
+          mise exec -- pnpm install --frozen-lockfile
           mise exec -- python -m pip install --upgrade pip
           mise exec -- python -m pip install -r requirements-dev.txt
 
       - name: Install Playwright browser and dependencies
-        run: mise exec -- npx playwright install --with-deps chromium
+        run: mise exec -- pnpm exec playwright install --with-deps chromium
 
       - name: Run Playwright tests
         run: mise run test-e2e

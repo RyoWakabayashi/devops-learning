@@ -1,11 +1,24 @@
 # Logs
 logs
 *.log
+*.tmp
+*.bak
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets/
 
 node_modules
 dist
@@ -14,6 +27,9 @@ coverage
 playwright-report
 storybook-static
 test-results
+sbom.spdx.json
+.cache
+.venv
 *.local
 
 # Editor directories and files
@@ -21,6 +37,7 @@ test-results
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj

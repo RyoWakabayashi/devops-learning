@@ -1,47 +1,62 @@
 [tools]
+gitleaks = "8.30.1"
 node = "24.14.1"
+pnpm = "11.5.2"
 python = "3.12.3"
 
 [tasks.setup]
-description = "Install npm and Python dependencies for local development"
+description = "Install pnpm and Python dependencies for local development"
 run = [
-  "npm ci",
+  "pnpm install --frozen-lockfile",
   "python -m pip install --upgrade pip",
   "python -m pip install -r requirements-dev.txt",
-  "npx playwright install chromium"
+  "pnpm exec playwright install chromium"
 ]
 
 [tasks.format]
 description = "Format all source files"
-run = "npm run format"
+run = "pnpm run format"
 
 [tasks.lint]
 description = "Run lint and Markdown checks"
 run = [
-  "npm run lint",
-  "npm run lint:docs"
+  "gitleaks git --redact --verbose",
+  "pnpm run lint",
+  "pnpm run lint:docs"
 ]
+
+[tasks.secret-scan]
+description = "Scan the repository for committed secrets"
+run = "gitleaks git --redact --verbose"
+
+[tasks.audit]
+description = "Audit third-party dependencies for known vulnerabilities"
+run = "pnpm audit --audit-level=high"
+
+[tasks.sbom]
+description = "Generate a software bill of materials (SBOM)"
+run = "pnpm run sbom"
 
 [tasks.typecheck]
 description = "Run TypeScript type checks"
-run = "npm run typecheck"
+run = "pnpm run typecheck"
 
 [tasks.test]
 description = "Run unit tests"
-run = "npm run test:unit"
+run = "pnpm run test:unit"
 
 [tasks.test-e2e]
 description = "Run Playwright end-to-end tests"
-run = "npm run test:e2e"
+run = "pnpm run test:e2e"
 
 [tasks.build]
 description = "Build the Vue app"
-run = "npm run build"
+run = "pnpm run build"
 
 [tasks.storybook]
 description = "Build Storybook"
-run = "npm run storybook:build"
+run = "pnpm run storybook:build"
 
 [tasks.check]
 description = "Run the same checks as CI"
-run = "npm run check"
+run = "pnpm run check"

@@ -6,36 +6,44 @@ repos:
       - id: trailing-whitespace
       - id: check-merge-conflict
       - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=500']
 
   - repo: local
     hooks:
+      - id: gitleaks
+        name: gitleaks
+        entry: python scripts/run_with_mise.py gitleaks git --pre-commit --redact --staged --verbose
+        language: python
+        pass_filenames: false
+
       - id: prettier-check
         name: prettier-check
-        entry: npm run format:check
-        language: system
+        entry: python scripts/run_with_mise.py pnpm run format:check
+        language: python
         pass_filenames: false
 
       - id: eslint
         name: eslint
-        entry: npm run lint
-        language: system
+        entry: python scripts/run_with_mise.py pnpm run lint
+        language: python
         pass_filenames: false
 
       - id: markdownlint
         name: markdownlint
-        entry: npm run lint:docs
-        language: system
+        entry: python scripts/run_with_mise.py pnpm run lint:docs
+        language: python
         pass_filenames: false
 
       - id: typecheck
         name: typecheck
-        entry: npm run typecheck
-        language: system
+        entry: python scripts/run_with_mise.py pnpm run typecheck
+        language: python
         pass_filenames: false
 
       - id: unit-tests
         name: unit-tests
-        entry: npm run test:unit
-        language: system
+        entry: python scripts/run_with_mise.py pnpm run test:unit
+        language: python
         pass_filenames: false
         stages: [pre-push]
