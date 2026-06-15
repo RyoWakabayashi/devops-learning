@@ -4,6 +4,9 @@ node = "24.14.1"
 pnpm = "11.5.2"
 python = "3.12.3"
 
+[settings]
+python.github_attestations = false
+
 [tasks.setup]
 description = "Install pnpm and Python dependencies for local development"
 run = [
