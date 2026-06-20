@@ -28,7 +28,7 @@
     "check": "pnpm run format:check && pnpm run secret-scan && pnpm run lint:docs && pnpm run lint && pnpm run typecheck && pnpm run test:unit && pnpm run build && pnpm run storybook:build"
   },
   "dependencies": {
-    "vue": "^3.5.35"
+    "vue": "^3.5.38"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
