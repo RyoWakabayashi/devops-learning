@@ -75,7 +75,7 @@ jobs:
       - name: Install project dependencies
         run: |
           mise exec -- pnpm install --frozen-lockfile
-          mise exec -- python -m pip install --upgrade pip
+          mise exec -- python -m pip install --upgrade 'pip>=26.2.2' 'certifi>=2026.10.19'
           mise exec -- python -m pip install -r requirements-dev.txt
 
       - name: Install Playwright browser and dependencies
