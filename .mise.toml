@@ -1,7 +1,8 @@
 [tools]
 gitleaks = "8.30.1"
 node = "24.22.1"
-pnpm = "11.5.2"
+# Use the pinned Node.js runtime for pnpm instead of the standalone binary.
+"npm:pnpm" = "11.5.2"
 python = "3.12.15"
 
 [settings]
