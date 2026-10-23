@@ -1,8 +1,9 @@
 [tools]
 gitleaks = "8.30.1"
-node = "24.14.1"
-pnpm = "11.5.2"
-python = "3.12.13"
+node = "24.22.1"
+# Use the pinned Node.js runtime for pnpm instead of the standalone binary.
+"npm:pnpm" = "11.5.2"
+python = "3.12.15"
 
 [settings]
 python.github_attestations = false
@@ -11,7 +12,7 @@ python.github_attestations = false
 description = "Install pnpm and Python dependencies for local development"
 run = [
   "pnpm install --frozen-lockfile",
-  "python -m pip install --upgrade pip",
+  "python -m pip install --upgrade 'pip>=26.2.2' 'certifi>=2026.10.19'",
   "python -m pip install -r requirements-dev.txt",
   "pnpm exec playwright install chromium"
 ]
