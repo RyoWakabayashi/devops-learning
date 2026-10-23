@@ -6,7 +6,11 @@ packages:
 overrides:
   esbuild: ^0.28.1
   js-yaml@<=4.1.1: ^4.1.2
-  markdown-it@<=14.1.1: ^14.1.2
+  markdown-it@<14.3.3: 14.3.3
+  # markdownlint-cli still pins older minor lines; use the patched parsers.
+  markdownlint-cli>js-yaml: 5.4.1
+  markdownlint-cli>smol-toml: 1.9.1
+  micromark-extension-math>katex: 0.18.2
 
 # Vite toolchain needs esbuild's postinstall step. Keep the allowlist explicit.
 allowBuilds:
@@ -80,3 +84,25 @@ minimumReleaseAgeExclude:
   - esbuild@0.28.1
   - js-yaml@4.1.2
   - markdown-it@14.1.2
+  # Security fixes: keep the 14-day default and exempt only these exact releases.
+  - markdown-it@14.3.3
+  - js-yaml@5.4.1
+  - smol-toml@1.9.1
+  - katex@0.18.2
+  - '@storybook/addon-a11y@10.6.2'
+  - '@storybook/addon-docs@10.6.2'
+  - '@storybook/builder-vite@10.6.2'
+  - '@storybook/csf-plugin@10.6.2'
+  - '@storybook/react-dom-shim@10.6.2'
+  - '@storybook/vue3-vite@10.6.2'
+  - '@storybook/vue3@10.6.2'
+  - storybook@10.6.2
+  - '@vitest/coverage-v8@4.1.12'
+  - '@vitest/expect@4.1.12'
+  - '@vitest/mocker@4.1.12'
+  - '@vitest/pretty-format@4.1.12'
+  - '@vitest/runner@4.1.12'
+  - '@vitest/snapshot@4.1.12'
+  - '@vitest/spy@4.1.12'
+  - '@vitest/utils@4.1.12'
+  - vitest@4.1.12
