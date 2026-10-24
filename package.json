@@ -45,7 +45,7 @@
     "eslint": "^10.12.0",
     "eslint-plugin-vue": "^10.11.1",
     "globals": "^17.13.0",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.1.1",
     "markdownlint-cli": "0.49.1",
     "prettier": "^3.9.9",
     "storybook": "^10.6.2",
